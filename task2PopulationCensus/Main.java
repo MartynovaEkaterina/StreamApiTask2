@@ -17,11 +17,14 @@ public class Main {
                     Education.values()[new Random().nextInt(Education.values().length)])
             );
         }
+
+        //Количество несовершеннолетних
         long countMinors = persons.stream()
                 .filter(p -> p.getAge() < 18)
                 .count();
         System.out.println(countMinors);
 
+        //Список фамилий призывников
         List<String> conscripts = persons.stream()
                 .filter(p -> p.getSex() == Sex.MAN)
                 .filter(p -> p.getAge() < 27)
@@ -30,6 +33,7 @@ public class Main {
                 .collect(Collectors.toList());
         printList(conscripts);
 
+        //Список потенциально работоспособных людей с высшим образованием
         List<Person> worker = persons.stream()
                 .filter(p -> (p.getEducation() == Education.HIGHER))
                 .filter(p -> p.getAge() >= 18)
